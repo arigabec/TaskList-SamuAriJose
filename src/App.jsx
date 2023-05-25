@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Modal from "./components/Modal";
-import NuevaTarea from "./components/NuevaTarea";
 import IconoNuevoGasto from "./assets/nuevo-gasto.svg";
 import { Task } from "./components/Task";
 
