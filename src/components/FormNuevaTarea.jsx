@@ -3,17 +3,22 @@ import { useState } from "react";
 const FormNuevaTarea = ({ tareasD, setTareasD, setNewTarea }) => {
   const [nombre, setNombre] = useState("");
   const [fecha, setFecha] = useState("");
+  const [completado, setCompletado] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const tarea = [
-      {
+    
+    if(![nombre,fecha].includes('')){
+      setTareasD([...tareasD, {
         nombre,
-      },
-    ];
-    setTareasD([...tareasD, ...tarea]);
-    setNewTarea(false);
-    console.log(nombre);
+        fecha,
+        completado
+      }]);
+      setNewTarea(false);
+    }else{
+      alert("Comando inaceptable");
+    }     
+    // console.log(nombre);
   };
 
   return (
@@ -45,7 +50,7 @@ const FormNuevaTarea = ({ tareasD, setTareasD, setNewTarea }) => {
             type="date"
             placeholder="Añade la fecha de la tarea"
             value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            onChange={(e) => setFecha(""+e.target.value)}
           />
         </div>
 
