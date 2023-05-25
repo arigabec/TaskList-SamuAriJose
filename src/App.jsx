@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import Modal from "./components/Modal";
-import NuevoGasto from "./components/NuevoGasto";
+import NuevaTarea from "./components/NuevaTarea";
 import IconoNuevoGasto from "./assets/nuevo-gasto.svg";
+import { Task } from "./components/Task";
 
 function App() {
-  const [gastos, setGastos] = useState(0);
-  const [newGasto, setNewGasto] = useState(false);
-  const [gastosD, setGastosD] = useState([]);
+  const [newTarea, setNewTarea] = useState(false);
+  const [tareasD, setTareasD] = useState([]);
 
   useEffect(() => {
-    console.log('Se cambio GastosD', gastosD);
-  }, [gastosD]);
+    console.log('Se cambio TareasD', tareasD);
+  }, [tareasD]);
 
   return (
     <div className="container mx-auto bg-slate-400 mt-10">
       <h2 className="text-white-500 text-3xl text-center font-bold my-2"> Lista de tareas </h2>
 
       {
-        gastosD.length > 0 && (
-          gastosD.map((gasto) => {
-            return <NuevoGasto gasto={gasto}/>
+        tareasD.length > 0 && (
+          tareasD.map((tarea) => {
+            return <Task nombreTarea={tarea} posicion={tareasD.indexOf(tarea) + 1}/>
           })
         ) 
       }
@@ -30,19 +30,17 @@ function App() {
           src={IconoNuevoGasto}
           alt="icono nuevo gasto"
           onClick={() => {
-            setNewGasto(true);
+            setNewTarea(true);
           }}
         />
       </div>
 
       {
-         newGasto && (
+         newTarea && (
           <Modal
-            gastos={gastos}
-            setGastos={setGastos}
-            gastosD={gastosD}
-            setGastosD={setGastosD}
-            setNewGasto={setNewGasto}
+            tareasD={tareasD}
+            setTareasD={setTareasD}
+            setNewTarea={setNewTarea}
           />
         )
       }

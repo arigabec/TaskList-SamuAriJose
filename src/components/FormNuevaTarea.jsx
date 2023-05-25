@@ -1,21 +1,21 @@
 import { useState } from "react";
-const FormNuevoGasto = ({ gastos, setGastos, gastosD, setGastosD, setNewGasto }) => {
-  const current = new Date();
+
+const FormNuevaTarea = ({ tareasD, setTareasD, setNewTarea }) => {
   const [nombre, setNombre] = useState("");
   const [fecha, setFecha] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const gasto = [
+    const tarea = [
       {
         nombre,
       },
     ];
-    setGastosD([...gastosD, ...gasto]);
-    setGastos(gastos + cantidad);
-    setNewGasto(false);
+    setTareasD([...tareasD, ...tarea]);
+    setNewTarea(false);
     console.log(nombre);
   };
+
   return (
     <div className="bg-white shadow-lg rounded-md py-5 w-1/2 md:w-1/3 mx-auto mt-20">
       <h2 className="text-stone-500 text-3xl text-center font-bold my-5">
@@ -45,17 +45,18 @@ const FormNuevoGasto = ({ gastos, setGastos, gastosD, setGastosD, setNewGasto })
             type="date"
             placeholder="Añade la fecha de la tarea"
             value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
           />
         </div>
 
         <input
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
           type="submit"
-          value={"Añadir Tarea"}
+          value={"Añadir tarea"}
         />
       </form>
     </div>
   );
 };
 
-export default FormNuevoGasto;
+export default FormNuevaTarea;
